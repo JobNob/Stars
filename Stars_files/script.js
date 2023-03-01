@@ -4,7 +4,7 @@ var canvas,
     starDense =             200,            // Плотность звёзд
     blackHoleDense =        100000,         // Плотность чёрных дыр
     neutronDense =          50000,          // Плотность нейтронных звёзд
-    collapseStepsAmount =   40,             // Раз в сколько тиков коллапсирующая нейтронка будет испускать звёзды
+    collapseStepsAmount =   70,             // Раз в сколько тиков коллапсирующая нейтронка будет испускать звёзды
     neutronCritMass =       20000,          // Порог минимальной массы, после которой нейтронная звезда перестаёт коллапсировать
     neutronAddSize =        5;              // Во сколько раз коллапсирующая нейтронка будет больше,
                                             // адекватное поведение только в интервале 3-12
@@ -155,6 +155,7 @@ function Step(){
 
             // Создание нейтронных звёзд и чёрных дыр
             if (star[i].m > 100000 && star[i].isN == 0 && star[i].isCollapsing == 0) {
+                star[i].isBH = 0;
                 star[i].isCollapsing = 1;
                 console.log("Collapsing begins");
             }
@@ -223,11 +224,11 @@ function Step(){
                     var NewStar = new Star(0, 1);
                     var ang = 2 * 3.141596 * Math.random();
 
-                    NewStar.x = Math.cos(ang) * star[i].r * (1 + 1.5/neutronAddSize) + Math.sign(Math.cos(ang)) * Math.random() * (1 + 2/neutronAddSize) + star[i].x;
-                    NewStar.y = Math.sin(ang) * star[i].r * (1 + 1.5/neutronAddSize) + Math.sign(Math.sin(ang)) * Math.random() * (1 + 2/neutronAddSize) + star[i].y;
+                    NewStar.x = Math.cos(ang) * star[i].r * (1 + 1.4/neutronAddSize) + Math.sign(Math.cos(ang)) * Math.random() * (1 + 2.8/neutronAddSize) + star[i].x;
+                    NewStar.y = Math.sin(ang) * star[i].r * (1 + 1.4/neutronAddSize) + Math.sign(Math.sin(ang)) * Math.random() * (1 + 2.8/neutronAddSize) + star[i].y;
 
-                    NewStar.vx = star[i].vx + (NewStar.x - star[i].x)*100;
-                    NewStar.vy = star[i].vy + (NewStar.y - star[i].y)*100;
+                    NewStar.vx = star[i].vx + (NewStar.x - star[i].x)*150;
+                    NewStar.vy = star[i].vy + (NewStar.y - star[i].y)*150;
 
                     star[i].m -= NewStar.m;
                     star.push(NewStar);
