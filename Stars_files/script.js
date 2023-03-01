@@ -170,8 +170,8 @@ function Step(){
             if ((star[i].m-star[j].m) >= 0) { // Если текущая звезда тяжелее
                 if ((Math.sqrt(r) <= star[i].r / 2) || (Math.sqrt(r) <= star[j].r / 2)) { // Если звезда j находится внутри i или наоборот
                     if (star[j].m > 100) { // Если можно отъесть сразу 100
-                        star[i].m += star[j].m/7;
-                        star[j].m -= star[j].m/7;
+                        star[i].m += star[j].m/4;
+                        star[j].m -= star[j].m/4;
                     } else { // Если массы меньше 100 - i сжирает j целиком
                         star[i].m += star[j].m;
                         star[i].vx = (star[i].vx * star[i].m + star[j].vx * star[j].m) / (star[i].m + star[j].m);
@@ -186,8 +186,8 @@ function Step(){
                 } else {
                     if (Math.sqrt(r) <= star[j].r+star[i].r) { // Если звезда i соприкасается со звездой j
                         if (star[j].m > 50) { // Если можно отъесть 50
-                            star[i].m += star[j].m/20;
-                            star[j].m -= star[j].m/20;
+                            star[i].m += star[j].m/7;
+                            star[j].m -= star[j].m/7;
                         } else {
                             star[i].m += star[j].m;
                             star[i].vx = (star[i].vx * star[i].m + star[j].vx * star[j].m) / (star[i].m + star[j].m);
